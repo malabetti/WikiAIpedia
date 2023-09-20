@@ -1,4 +1,4 @@
-package main.java.com.example;
+package com.example;
 
 import java.util.ArrayList;
 
@@ -37,5 +37,16 @@ public class Categoria {
 
     void setDescricao(String s) {
         this.descricao = s;
+    }
+
+    public String sobre() {
+        return "Nome: " + this.nome +
+                "\nDescrição: " + this.descricao +
+                "\nId: " + this.id;
+    }
+
+    @Override
+    public String toString() {
+        return this.id + "," + this.nome + "," + this.descricao;
     }
 }

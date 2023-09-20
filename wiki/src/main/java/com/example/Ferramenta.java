@@ -1,4 +1,6 @@
-package main.java.com.example;
+package com.example;
+
+import java.util.ArrayList;
 
 public class Ferramenta {
 
@@ -46,7 +48,25 @@ public class Ferramenta {
         this.categoriaPrincial = s;
     } 
 
-    void completarFerramenta() {
+    FerramentaCompleta completarFerramenta(ArrayList<Categoria> categoriasAdd, String site) {
         this.completa = true;
+        return new FerramentaCompleta(this, categoriasAdd, site);
+    }
+
+    void setCompleta() {
+        this.completa = true;
+    }
+
+    @Override
+    public String toString() {
+        return this.completa + "," + this.id + "," + this.nome + "," + this.descricao + "," + this.categoriaPrincial;
+    }
+
+    public String sobre() {
+        return "Nome: " + this.nome +
+                "\nDescrição: " + this.descricao +
+                "\nId: " + this.id +
+                "\nCompleta: " + this.completa +
+                "\nCategoria principal: " + this.categoriaPrincial.getNome();
     }
 }
