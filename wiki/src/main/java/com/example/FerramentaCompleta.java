@@ -46,11 +46,11 @@ public class FerramentaCompleta extends Ferramenta {
     }
 
     @Override
-    public String toString() {
-        ArrayList<String> nomes = new ArrayList<String>();
+    public String toString(String sep) {
+        ArrayList<Integer> ids = new ArrayList<Integer>();
         for(Categoria i : categoriasExtras) {
-            nomes.add(i.getNome());
+            ids.add(i.getId());
         }
-        return super.toString() + "," + nomes;
+        return super.toString(";") + sep + ids;
     }
 }

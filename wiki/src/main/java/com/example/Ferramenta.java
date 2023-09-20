@@ -57,9 +57,8 @@ public class Ferramenta {
         this.completa = true;
     }
 
-    @Override
-    public String toString() {
-        return this.completa + "," + this.id + "," + this.nome + "," + this.descricao + "," + this.categoriaPrincial;
+    public String toString(String sep) {
+        return this.completa + sep + this.id + sep + this.nome + sep + this.descricao + sep + this.categoriaPrincial.getId();
     }
 
     public String sobre() {

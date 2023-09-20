@@ -45,8 +45,7 @@ public class Categoria {
                 "\nId: " + this.id;
     }
 
-    @Override
-    public String toString() {
-        return this.id + "," + this.nome + "," + this.descricao;
+    public String toString(String sep) {
+        return this.id + sep + this.nome + sep + this.descricao;
     }
 }

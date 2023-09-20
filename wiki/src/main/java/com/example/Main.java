@@ -22,13 +22,22 @@ public class Main {
 
         Arquivo fileCategorias = new Arquivo("categorias", "csv");
 
-        fileCategorias.escreverFile(c1.toString() + "\n", true);
-        fileCategorias.escreverFile(c2.toString() + "\n", false);
-        fileCategorias.escreverFile(c3.toString() + "\n", true);
+        fileCategorias.escreverFile(c1.toString(";") + "\n", true);
+        fileCategorias.escreverFile(c2.toString(";") + "\n", false);
+        fileCategorias.escreverFile(c3.toString(";") + "\n", true);
 
         Arquivo fileFerramentas = new Arquivo("ferramentas", "csv");
 
-        fileFerramentas.escreverFile(f1.toString() + "\n", false);
-        fileFerramentas.escreverFile(f2.toString() + "\n", true);
+        fileFerramentas.escreverFile(f1.toString(";") + "\n", false);
+        fileFerramentas.escreverFile(f2.toString(";") + "\n", true);
+
+        ArrayList<String[]> l = new ArrayList<String[]>();
+        l = fileFerramentas.lerFile(";");
+        for(String[] i : l) {
+            for(String j : i) {
+                System.out.println(j);
+            }
+            System.out.println();
+        }
     }
 }
