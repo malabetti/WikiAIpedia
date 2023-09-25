@@ -38,11 +38,11 @@ public class FerramentaCompleta extends Ferramenta {
 
     @Override
     public String sobre() {
-        ArrayList<String> nomes = new ArrayList<String>();
+        ArrayList<Integer> ids = new ArrayList<Integer>();
         for(Categoria i : categoriasExtras) {
-            nomes.add(i.getNome());
+            ids.add(i.getId());
         }
-        return super.sobre() + "\nCategorias extras: " + nomes;
+        return super.sobre() + "\nCategorias extras: " + ids;
     }
 
     @Override
