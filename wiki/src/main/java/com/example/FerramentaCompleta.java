@@ -51,6 +51,6 @@ public class FerramentaCompleta extends Ferramenta {
         for(Categoria i : categoriasExtras) {
             ids.add(i.getId());
         }
-        return super.toString(";") + sep + ids;
+        return super.toString(";") + sep + this.site + sep + ids;
     }
 }

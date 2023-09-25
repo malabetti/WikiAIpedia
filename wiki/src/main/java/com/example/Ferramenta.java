@@ -20,6 +20,14 @@ public class Ferramenta {
         this.id = quantidade;
     }
 
+    Ferramenta(String nome, String descricao, Categoria categoriaPrincipal, int id) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.categoriaPrincial = categoriaPrincipal;
+        this.id = id;
+        quantidade = id;
+    }
+
     String getNome() {
         return this.nome;
     }
