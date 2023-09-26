@@ -520,7 +520,7 @@ public class Main {
     static ArrayList<Categoria> strToCategorias(ArrayList<String[]> arr) {
         ArrayList<Categoria> categorias = new ArrayList<Categoria>();
         for(String[] i : arr) {
-            categorias.add(new Categoria(i[0], i[1]));
+            categorias.add(new Categoria(i[1], i[2], Integer.parseInt(i[0])));
         }
         return categorias;
     }
@@ -540,7 +540,6 @@ public class Main {
                 ArrayList<Categoria> categoriasExtras = new ArrayList<Categoria>();
                 i[6] = i[6].replace("[", "");
                 i[6] = i[6].replace("]", "");
-                i[6] = i[6].replace(" ", "");
                 String[] s = i[6].split(",");
                 for(String j : s) {
                     for(Categoria k : c) {

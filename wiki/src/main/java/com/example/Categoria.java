@@ -19,6 +19,14 @@ public class Categoria {
         categorias.add(this);
     }
 
+    Categoria(String nome, String descricao, int id) {
+        this.nome = nome;
+        this.descricao = descricao;
+        quantidade = id;
+        this.id = id;
+        categorias.add(this);
+    }
+
     String getNome() {
         return this.nome;
     }
