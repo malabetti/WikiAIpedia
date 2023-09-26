@@ -15,9 +15,10 @@ public class FerramentaCompleta extends Ferramenta {
     }
 
     FerramentaCompleta(Ferramenta e, ArrayList<Categoria> categoriasAdd, String site) {
-        super(e.getNome(), e.getDescricao(), e.getCategoriaPrincipal());
+        super(e.getNome(), e.getDescricao(), e.getCategoriaPrincipal(), e.getId());
         this.categoriasExtras = categoriasAdd;
         this.site = site;
+        this.setCompleta();
     }
 
     String getSite() {

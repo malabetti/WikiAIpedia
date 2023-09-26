@@ -102,16 +102,355 @@ public class Main {
                     }
                 }
                 case 2 -> {
-
-                }
+                    if(ferramentas.size() == 0) {
+                        System.out.println("\nPara remover ferramentas, é necessário ter ferramentas já cadastradas!");
+                        System.out.print("Enter para continuar...");
+                        scanner.nextLine();
+                    }
+                    else {
+                        System.out.println("Digite o id da ferramenta que deseja remover.");
+                        System.out.print("Enter para continuar...");
+                        scanner.nextLine();
+                        for(Ferramenta i : ferramentas) {
+                            System.out.println("---------");
+                            System.out.println(i.sobre());
+                        }
+                        System.out.print("---------\n-> ");
+                        int id = Integer.parseInt(scanner.nextLine());
+                        for(Ferramenta i : ferramentas) {
+                            if(i.getId() == id) {
+                                ferramentas.remove(i);
+                                System.out.println("Ferramenta removida!");
+                                System.out.print("Enter para continuar...");
+                                scanner.nextLine();
+                                break;
+                            }
+                        }
+                    }
+                 }
                 case 3 -> {
-
+                    if(ferramentas.size() == 0) {
+                        System.out.println("\nPara listar ferramentas, é necessário ter ferramentas já cadastradas!");
+                    }
+                    else {
+                        for(Ferramenta i : ferramentas) {
+                            System.out.println("---------");
+                            System.out.println(i.sobre());
+                        }
+                        System.out.println("---------");
+                    }
                 }
                 case 4 -> {
+                    if(ferramentas.size() == 0) {
+                        System.out.println("\nPara editar ferramentas, é necessário ter ferramentas já cadastradas!");
+                        System.out.print("Enter para continuar...");
+                        scanner.nextLine();
+                    }
+                    else {
+                        System.out.println("Digite o id da ferramenta que deseja editar.");
+                        System.out.print("Enter para continuar...");
+                        scanner.nextLine();
+                        for(Ferramenta i : ferramentas) {
+                            System.out.println("---------");
+                            System.out.println(i.sobre());
+                        }
+                        System.out.print("---------\n-> ");
+                        int id = Integer.parseInt(scanner.nextLine());
+                        int pos = 0;
+                        for(Ferramenta i : ferramentas) {
+                            if(i.getId() == id) {
+                                System.out.println("O que deseja editar:");
+                                if(i.getCompleta()){
+                                    System.out.print("""
+                                        1. Nome
+                                        2. Descrição
+                                        3. Categoria Principal
+                                        4. Reconfigurar Categoria Completa
+                                        5. Sair
+                                        ->\t""");
+                                    int o = Integer.parseInt(scanner.nextLine());
+                                    switch (o) {
+                                        case 1 -> {
+                                            System.out.print("Digite o nome: ");
+                                            i.setNome(scanner.nextLine());
+                                            System.out.println("Nome alterado com sucesso!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                        case 2 -> {
+                                            System.out.print("Digite a decrição: ");
+                                            i.setDescricao(scanner.nextLine());
+                                            System.out.println("Descrição alterada com sucesso!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                        case 3 -> {
+                                            System.out.println("Das seguintes categorias, selecione o id da categoria principal:");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
 
+                                            for(Categoria j : categorias) {
+                                                System.out.println("---------");
+                                                System.out.println(j.sobre());
+                                            }
+                                            System.out.print("---------\n-> ");
+                                            int idt = Integer.parseInt(scanner.nextLine());
+
+                                            Categoria principal = i.getCategoriaPrincipal();
+                                            for(Categoria j : categorias) {
+                                                if(i.getId() == idt) {
+                                                    principal = j;
+                                                    break;
+                                                }
+                                            }
+                                            i.setCategoriaPrincipal(principal);
+                                            System.out.println("Categoria principal alterada com sucesso!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                        case 4 -> {
+                                            System.out.print("Digite o site da ferramenta: ");
+                                            String site = scanner.nextLine();
+                                            System.out.print("Escolha o id das categorias extras separados por espaços:");
+                                            ArrayList<Integer> ids = new ArrayList<Integer>();
+                                            ArrayList<Categoria> extras = new ArrayList<Categoria>();
+                                            String[] s = scanner.nextLine().split(" ");
+                                            for(String r : s) {
+                                                for(Categoria j : categorias) {
+                                                    if(j.getId() == Integer.parseInt(r)) {
+                                                        extras.add(j);
+                                                    }
+                                                }
+                                            }
+                                            if(categorias.size() == 0) {
+                                                System.out.println("Ids digitados são inválidos!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                            else {
+                                                ferramentas.set(pos, new FerramentaCompleta(i, extras, site));
+                                                System.out.println("Ferramenta completada com sucesso!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                        }
+                                        case 5 -> {
+                                            break;
+                                        }
+                                        default -> {
+                                            System.out.println("Opção inválida!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                    }
+                                    System.out.print("Enter para continuar...");
+                                    scanner.nextLine();
+                                }
+                                else {
+                                    System.out.print("""
+                                        1. Nome
+                                        2. Descrição
+                                        3. Categoria Principal
+                                        4. Tornar Completa
+                                        5. Sair
+                                        ->\t""");
+                                    int o = Integer.parseInt(scanner.nextLine());
+                                    switch (o) {
+                                        case 1 -> {
+                                            System.out.print("Digite o nome: ");
+                                            i.setNome(scanner.nextLine());
+                                            System.out.println("Nome alterado com sucesso!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                        case 2 -> {
+                                            System.out.print("Digite a decrição: ");
+                                            i.setDescricao(scanner.nextLine());
+                                            System.out.println("Descrição alterada com sucesso!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                        case 3 -> {
+                                            System.out.println("Das seguintes categorias, selecione o id da categoria principal:");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+
+                                            for(Categoria j : categorias) {
+                                                System.out.println("---------");
+                                                System.out.println(j.sobre());
+                                            }
+                                            System.out.print("---------\n-> ");
+                                            int idt = Integer.parseInt(scanner.nextLine());
+
+                                            Categoria principal = i.getCategoriaPrincipal();
+                                            for(Categoria j : categorias) {
+                                                if(i.getId() == idt) {
+                                                    principal = j;
+                                                    break;
+                                                }
+                                            }
+                                            i.setCategoriaPrincipal(principal);
+                                            System.out.println("Categoria principal alterada com sucesso!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                        case 4 -> {
+                                            System.out.print("Digite o site da ferramenta: ");
+                                            String site = scanner.nextLine();
+                                            System.out.print("Escolha o id das categorias extras separados por espaços:");
+                                            ArrayList<Integer> ids = new ArrayList<Integer>();
+                                            ArrayList<Categoria> extras = new ArrayList<Categoria>();
+                                            String[] s = scanner.nextLine().split(" ");
+                                            for(String r : s) {
+                                                for(Categoria j : categorias) {
+                                                    if(j.getId() == Integer.parseInt(r)) {
+                                                        extras.add(j);
+                                                    }
+                                                }
+                                            }
+                                            if(categorias.size() == 0) {
+                                                System.out.println("Ids digitados são inválidos!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                            else {
+                                                ferramentas.set(pos, new FerramentaCompleta(i, extras, site));
+                                                System.out.println("Ferramenta completada com sucesso!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                        }
+                                        case 5 -> {
+                                            break;
+                                        }
+                                        default -> {
+                                            System.out.println("Opção inválida!");
+                                            System.out.print("Enter para continuar...");
+                                            scanner.nextLine();
+                                        }
+                                    }
+                                }
+
+                            }
+                            pos++;
+                        }
+                    }
                 }
                 case 5 -> {
+                    System.out.println("O que deseja realizar:");
+                    System.out.print("""
+                                        1. Adicionar categoria
+                                        2. Deletar categoria
+                                        3. Editar categoria
+                                        4. Sair
+                                        ->\t""");
+                    int o = Integer.parseInt(scanner.nextLine());
+                    switch(o) {
+                        case 1 -> {
+                            System.out.print("Nome: ");
+                            String nome = scanner.nextLine();
+                            System.out.print("Descrição: ");
+                            String descricao = scanner.nextLine();
+                            categorias.add(new Categoria(nome, descricao));
+                            System.out.println("Categoria adiconada com sucesso!");
+                            System.out.print("Enter para continuar...");
+                            scanner.nextLine();
+                        }
+                        case 2 -> {
+                            if(categorias.size() == 0) {
+                                System.out.println("Não há categorias cadastradas!");
+                                System.out.print("Enter para continuar...");
+                                scanner.nextLine();
+                            }
+                            else {
+                                System.out.println("Certifique-se de não ter nenhuma ferramenta cadastrada a categoria que deseje remover!");
+                                System.out.println("Das seguintes categorias, selecione o id da categoria que deseja remover:");
+                                System.out.print("Enter para continuar...");
+                                scanner.nextLine();
 
+                                for(Categoria j : categorias) {
+                                    System.out.println("---------");
+                                    System.out.println(j.sobre());
+                                }
+                                System.out.print("---------\n-> ");
+                                int id = Integer.parseInt(scanner.nextLine());
+
+                                for(Categoria j : categorias) {
+                                    if(j.getId() == id) {
+                                        categorias.remove(j);
+                                        System.out.println("Categoria removida com sucesso!");
+                                        System.out.print("Enter para continuar...");
+                                        scanner.nextLine();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        case 3 -> {
+                            if(categorias.size() == 0) {
+                                System.out.println("Não há categorias cadastradas!");
+                                System.out.print("Enter para continuar...");
+                                scanner.nextLine();
+                            }
+                            else {
+                                System.out.println("Das seguintes categorias, selecione o id da categoria que deseja editar:");
+                                System.out.print("Enter para continuar...");
+                                scanner.nextLine();
+
+                                for(Categoria j : categorias) {
+                                    System.out.println("---------");
+                                    System.out.println(j.sobre());
+                                }
+                                System.out.print("---------\n-> ");
+                                int id = Integer.parseInt(scanner.nextLine());
+
+                                for(Categoria j : categorias) {
+                                    if(j.getId() == id) {
+                                        System.out.println("O que deseja editar:");
+                                        System.out.print("""
+                                        1. Nome
+                                        2. Descrição
+                                        3. Sair
+                                        ->\t""");
+                                        int o2 = Integer.parseInt(scanner.nextLine());
+                                        switch(o2) {
+                                            case 1 -> {
+                                                System.out.print("Digite o nome: ");
+                                                j.setNome(scanner.nextLine());
+                                                System.out.println("Nome alterado com sucesso!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                            case 2 -> {
+                                                System.out.print("Digite a decrição: ");
+                                                j.setDescricao(scanner.nextLine());
+                                                System.out.println("Descrição alterada com sucesso!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                            case 3 -> {
+                                                break;
+                                            }
+                                            default -> {
+                                                System.out.println("Opção inválida!");
+                                                System.out.print("Enter para continuar...");
+                                                scanner.nextLine();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        case 4 -> {
+                            break;
+                        }
+                        default -> {
+                            System.out.println("Opção inválida!");
+                            System.out.print("Enter para continuar...");
+                            scanner.nextLine();
+                        }
+                    }
                 }
                 case 6 -> {
                     System.out.println("Você deseja:");
@@ -191,7 +530,7 @@ public class Main {
         for(String[] i : arr) {
             Categoria a = null;
             for(Categoria j : c) {
-                if(j.getId() == Integer.parseInt(i[1])) {
+                if(j.getId() == Integer.parseInt(i[4])) {
                     a = j;
                     break;
                 }
@@ -201,6 +540,7 @@ public class Main {
                 ArrayList<Categoria> categoriasExtras = new ArrayList<Categoria>();
                 i[6] = i[6].replace("[", "");
                 i[6] = i[6].replace("]", "");
+                i[6] = i[6].replace(" ", "");
                 String[] s = i[6].split(",");
                 for(String j : s) {
                     for(Categoria k : c) {

@@ -44,6 +44,10 @@ public class Ferramenta {
         return this.id;
     }
 
+    boolean getCompleta() {
+        return this.completa;
+    }
+
     void setNome(String s) {
         this.nome = s;
     } 
